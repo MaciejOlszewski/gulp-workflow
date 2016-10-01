@@ -1,0 +1,6 @@
+dist
+node_modules
+$RECYCLE.BIN/
+Desktop.ini
+Thumbs.db
+ehthumbs.db
