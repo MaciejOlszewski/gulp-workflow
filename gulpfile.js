@@ -9,11 +9,19 @@ var imagemin = require ('gulp-imagemin');
 var cache = require ('gulp-cache');
 var del = require('del');
 var runSequence = require('run-sequence');
+var autoprefixer  = require('gulp-autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
 
 //Compile Sass
 gulp.task('sass', function(){
   return gulp.src('app/scss/**/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass())
+    .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: true
+        }))
+    .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest('app/css'))
     .pipe(browserSync.reload({
   stream: true
