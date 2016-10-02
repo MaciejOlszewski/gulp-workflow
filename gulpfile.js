@@ -11,6 +11,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var autoprefixer  = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
+var devip = require('dev-ip');
 
 //Compile Sass
 gulp.task('sass', function(){
@@ -80,7 +81,10 @@ gulp.task('cache:remove', function (callback) {
 return cache.clearAll(callback)
 });
 
-
+//IP for other devices
+gulp.task('devip', function(){
+console.log(devip())
+});
 
 //Task in sequence
 gulp.task('build', function(callback){
@@ -91,7 +95,7 @@ gulp.task('build', function(callback){
 });
 
 gulp.task('default', function(callback){
-  runSequence(['sass', 'browserSync', 'watch'],
+  runSequence(['devip', 'sass', 'browserSync', 'watch'],
   callback
   )
 });
